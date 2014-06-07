@@ -1,0 +1,126 @@
+input {
+	font-family: $headingfont, $defaultfont;
+}
+
+@mixin inputstyles($color) {
+	input[type=text], input[type=email], input[type=password], textarea, input[type=number] {
+		border: .1em inset tint($color, 40%);
+		background: tint($color, 99%);
+		padding: .3em;
+		color: shade($color, 60%);
+		font-family: $headingfont, $defaultfont;
+
+		&:focus {
+			border: .1em inset tint($color, 70%);
+		}
+	}
+}
+
+%inputstyle {
+	border: 0.1em inset #CCCCCC;
+	border-radius: .1em;
+	padding: 0.2em;
+}
+
+@mixin formstyle($color, $inputsize) {
+
+	.simpleform {
+		@include row;
+		div {
+			margin: .3em 0;
+			label {
+				@include row;
+			}
+
+			input, textarea {
+				@extend %inputstyle;
+				width: 100%;
+				font-family: $headingfont, $defaultfont;
+			}
+
+		}
+	}
+
+	.impform {
+		@include row;
+
+		fieldset {
+
+			background: #fff;
+			margin-top: .2em;
+			padding-bottom: 1em;
+			border: none;
+
+			input, textarea {
+				@extend %inputstyle;
+				min-width: $inputsize;
+				font-family: $headingfont, $defaultfont;
+			}
+
+			&>div:nth-child(even) {
+				background-color: tint($color, 95%);
+			}
+
+			&>div {
+				@include row;
+				@include pad(.3em);
+				>  :first-child {
+					color: shade($color, 65%);
+					padding: .3em 0;
+					font-family: $headingfont, $defaultfont;
+					font-size: .9em;
+					@media (max-width: 480px) {
+						@include row;
+					}
+					@media (min-width: 481px) {
+						@include span-columns(2);
+					}
+				}
+				> :nth-child(2n) {
+					@media (max-width: 480px) {
+						@include span-columns(12);
+					}
+					@media (min-width: 481px) {
+						@include span-columns(7);
+					}
+				}
+				p {
+					padding: .2em 0;
+					margin: 0;
+				}
+			}
+		}
+
+
+		legend {
+			padding-top: .3em;
+			color: shade($color, 95%);
+			border-bottom: .1em solid shade($color, 30%);
+			font-size: 1.3em;
+			font-weight: bold;
+		}
+
+		select {
+			font-family: $headingfont, $defaultfont;
+			min-width: $inputsize;
+		}
+
+
+		table tr td:first-child{
+			cursor: pointer;
+		}
+
+		.submit {
+			padding: .6em;
+			>:first-child {
+				@include span-columns(6);
+				@include shift(3)
+			}
+		}
+
+		.fssubmit {
+			margin-left: .8em;
+		}
+	}
+}
+

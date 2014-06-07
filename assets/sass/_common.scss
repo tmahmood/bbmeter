@@ -1,0 +1,36 @@
+
+@mixin linkbuttonhover {
+	background: $defaultblue;
+	color: #fff;
+}
+
+@mixin dropshadow {
+	box-shadow: 0 0 .12em $shadowcolor;
+	border-radius: .22em;
+	border: none;
+}
+
+@mixin mutedtexts {
+	font-weight: bold;
+	color: tint($themecolor, 40%);
+}
+
+@mixin linkbuttons {
+	@include mutedtexts;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: .8em;
+	padding: .1em .5em;
+	background: #ddd;
+	border-radius: .2em;
+}
+
+@mixin nicelabels($col:2, $fs:.7em) {
+	@include mutedtexts;
+	@include span-columns($col);
+	font-size: $fs;
+	vertical-align: middle;
+	padding-top: .8em;
+	text-transform: uppercase;
+}
+

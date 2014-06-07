@@ -1,0 +1,96 @@
+
+.btncommon {
+	font-family: $headingfont, $defaultfont;
+	text-transform: uppercase;
+	border: none;
+	border-radius: .2em;
+	text-decoration: none;
+	font-size: .8em;
+	font-weight: bold;
+	white-space: nowrap;
+	padding: .4em 1em;
+
+	table & {
+		padding: .1em .6em;
+		border-radius: 0.2em;
+		font-size: .8em;
+		margin-right: .1em;
+	}
+}
+
+@mixin makebtn ($color) {
+	@extend .btncommon;
+	background: $color !important;
+	color: tint($color, 95%) !important;
+	border-bottom: .2em solid shade($color, 20%);
+	&:visited {
+		color: tint($color, 95%);
+	}
+	&:hover {
+		background: shade($color, 30%);
+	}
+	&:active {
+		background: shade($color, 10%);
+	}
+}
+
+.btn {
+	@include makebtn($defaultblue);
+}
+
+.greenbtn {
+	@include makebtn($defaultgreen);
+}
+
+.redbtn {
+
+	@include makebtn($defaultred);
+}
+
+.orangebtn {
+	@include makebtn(#FF5600);
+}
+
+.yellowbtn {
+	@include makebtn(#EFC951);
+}
+
+
+.submitbutton {
+	overflow: auto;
+	@include shift(3);
+	padding-left: .5em;
+
+}
+
+.btncontainer {
+	overflow: auto;
+	margin-bottom: .4em;
+	padding: .5em 0;
+	@include row;
+	.safe {
+		@include span-columns(7);
+	}
+	.unsafe {
+		@include span-columns(5);
+		text-align: right;
+	}
+
+	form {
+		display: inline;
+	}
+}
+
+#eactions {
+	$bg: #27B8EA;
+	background: tint($bg, 90%);
+	border-bottom: .3em solid tint($bg, 50%);
+	padding: .5em .3em;
+}
+
+#ajaxwindow, #editwindow, #askconfirm {
+	input[type=button], input[type=submit]{
+		font-size: .8em;
+	}
+}
+

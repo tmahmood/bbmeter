@@ -1,0 +1,109 @@
+@mixin datatable($color) {
+
+	table {
+		$headercolor: tint($color, 30%);
+
+		font-size: .9em;
+		color: shade($color, 65%);
+		border: .1em solid $headercolor;
+		width: 100%;
+
+		@media (max-width: 900px)  {
+			font-size: 1.1em;
+			caption, thead, tbody, tr, td {
+				@include row;
+			}
+
+			thead {
+				position: absolute;
+				top: -9999px;
+				left: -9999px;
+			}
+
+			td {
+				@include span-columns(8);
+
+				&:before {
+					content: attr(data-label);
+					font-size: .9em;
+					font-weight: bold;
+					@include span-columns(4)
+				}
+			}
+
+
+		}
+
+
+		caption {
+			background: $headercolor;
+			color: tint($color, 99%);
+			padding: .4em;
+			text-align: left;
+			font-size: 1.1em;
+			font-weight: bold;
+			overflow: auto;
+		}
+
+		thead {
+			border-bottom: .2em solid shade($color, 20%);
+		}
+
+		tbody { }
+
+		th {
+			background: $headercolor;
+			color: shade($color, 59%);
+			font-family: $headingfont;
+			font-weight: bold;
+			font-size: .8em;
+			padding: .4em;
+			text-transform: uppercase;
+		}
+
+		tfoot {
+			border-top: .3em solid shade($color, 60%);
+			th {
+				background: tint($color, 20%);
+				color: tint($color, 89%);
+				font-size: 1.3em;
+				text-align: right;
+			}
+		}
+
+		td {
+			padding: .4em;
+			border-right: .1em dotted tint($color, 70%);
+			border-bottom: .1em dotted tint($color, 70%);
+			&:last-child {
+				border-right: none;
+			}
+
+			&.number {
+				text-align: right;
+			}
+		}
+
+		tr {
+			min-height: 5em;
+			&.rowselected {
+				background: shade($color, 60%) !important;
+				* {
+					color: tint($color, 90%);
+				}
+			}
+			&:nth-child(even) {
+				background-color: tint($color, 93%);
+			}
+
+			&:nth-child(odd) {
+				background-color: #fff;
+			}
+
+			a, a:visited {
+				color: shade($color, 20%);
+				text-decoration: none;
+			}
+		}
+	}
+}

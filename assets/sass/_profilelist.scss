@@ -1,0 +1,107 @@
+#profileList {
+	padding: 0;
+	@include row;
+
+	li {
+		list-style: none;
+		list-style-position: outside;
+		padding: .3em 0;
+		margin-bottom: .5em;
+		margin-top: .5em;
+		cursor: pointer;
+
+		box-shadow: 0 0.3em 0 #dedede;
+		border: .03em solid #dedede;
+		border-radius: .2em;
+
+		padding: .4em;
+		font-size: 1.4em;
+
+		&.active {
+			box-shadow: 0 0.3em 0 $defaultblue;
+			border-color: $defaultblue;
+		}
+
+		header {
+			@include row;
+			h3 {
+				@include row;
+				font-size: .8em;
+				margin: 0;
+			}
+			p {
+				font-size: .6em;
+				margin: 0;
+				@include row;
+			}
+		}
+
+
+		article {
+			@include row;
+			p {
+				padding: .1em 0;
+				margin: 0;
+				font-size: .65em;
+				&:last-child {
+					border: none;
+				}
+			}
+		}
+
+		.none {
+			color: $defaultgray;
+			font-size: .7em;
+			padding: .3em 0;
+			font-weight: bold;
+		}
+
+		@media (min-width: 1201px) {
+			@include row;
+			header {
+				@include span-columns(7);
+			}
+
+			article {
+				text-align: right;
+				@include span-columns(5);
+			}
+		}
+
+		@media (min-width: 801px) {
+			@include span-columns(3);
+			@include omega(4n);
+			article {
+				p {
+					@include row;
+				}
+			}
+		}
+
+		@media (min-width: 481px) and (max-width: 800px) {
+			@include span-columns(4);
+			@include omega(3n);
+			header { }
+
+			article {
+				p {
+					@include row;
+				}
+			}
+		}
+
+		@media (max-width: 480px) {
+			@include row;
+			header {
+				@include span-columns(7);
+			}
+			article {
+				@include span-columns(5);
+				text-align: right;
+				p {
+					@include row;
+				}
+			}
+		}
+	}
+}

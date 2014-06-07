@@ -1,0 +1,43 @@
+.message{
+	background-size: 40px 40px;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+@mixin notifications($img, $color) {
+	@extend .message;
+	box-shadow: 0 0 .3em shade($color, 30%);
+	color: tint($color, 95%);
+	background: url($img) 1% 40% no-repeat $color;
+}
+
+#notifications {
+	position: absolute;
+	top: 2.6em;
+	width: 100%;
+	z-index: 1000001;
+
+	div {
+		@include row;
+		margin-top: 0;
+		padding: 1em 3.7em;
+		font-weight: bold;
+
+		&.message {
+			@include notifications('../imgs/quote.png', shade($defaultblue, 20%));
+		}
+
+		&.error {
+			@include notifications('../imgs/denied.png', $defaultred);
+		}
+
+		&.warn {
+			@include notifications('../imgs/caution.png', #CE9543);
+		}
+
+		&.success {
+			@include notifications('../imgs/check.png', $defaultgreen);
+		}
+	}
+}
+

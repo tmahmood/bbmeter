@@ -1,0 +1,78 @@
+.pagination {
+
+	margin: 0;
+	padding: 0;
+	font-size: .9em;
+	list-style: none;
+
+	@include row;
+
+	li {
+
+		margin-top: .4em;
+		margin-bottom: .4em;
+
+		border-radius: .2em;
+		border: .1em solid #eee;
+		text-align: center;
+
+		@media (min-width: 801px) {
+			@include span-columns(1);
+			@include omega(12n);
+		}
+
+
+		@media (max-width: 800px) and (min-width: 641px) {
+			@include span-columns(2);
+			@include omega(6n);
+		}
+
+		@media (max-width: 640px) and (min-width: 481px) {
+			@include span-columns(3);
+			@include omega(4n);
+		}
+
+		@media (max-width: 480px) {
+			@include span-columns(4);
+			@include omega(3n);
+			&.haspage {
+				a {
+					background: tint($defaultblue, 50%);
+					color: shade($defaultblue, 60%);
+				}
+			}
+		}
+
+		@media (min-width: 481px) {
+			&.haspage {
+				a {
+					border-bottom: .3em solid $defaultblue;
+				}
+			}
+		}
+
+
+		&.active {
+			font-weight: bold;
+			background: #ddd;
+		}
+
+		a {
+			background: #eee;
+			color: #666;
+			float: left;
+			width: 100%;
+			&:hover {
+				color: $defaultblue;
+				padding: auto 1.7em;
+			}
+		}
+
+		&:first-child, &:last-child {
+			a {
+				color: #777;
+			}
+		}
+
+	}
+}

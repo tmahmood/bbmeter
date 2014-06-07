@@ -1,0 +1,106 @@
+.nicebox {
+	@include row;
+	header {
+		font-family: $headingfont, $defaultfont;
+		border-radius: .3em .3em 0 0;
+		padding: .4em .4em .4em 1em;
+		margin: .1em 0 0;
+		text-align: center;
+		font-size: 1.2em;
+		.compact & {
+			font-size: 1em;
+			text-transform: uppercase;
+		}
+	}
+	article {
+		padding: 1em;
+		border-radius: 0 0 .3em .3em ;
+		line-height: 2em;
+		pre {
+			padding: 0 .3em;
+			display: inline;
+			border-radius: .2em;
+			font-family: 'Source Code Pro', Consolas, monospace;
+		}
+		a {
+			padding: .3em;
+			white-space: nowrap;
+			border-radius: .2em;
+		}
+		.compact & {
+			font-size: .9em;
+			font-weight: bold;
+		}
+	}
+}
+
+.simplebox {
+	font-family: $headingfont, $defaultfont;
+	padding: .3em 1em;
+	header {
+		padding: .3em;
+	}
+	article {
+		padding: .3em;
+		line-height: 2em;
+		a {
+			padding: .3em;
+			white-space: nowrap;
+			border-radius: .2em;
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: .8em;
+		}
+		pre {
+			padding: 0 .3em;
+			display: inline;
+			font-family: 'Source Code Pro', Consolas, monospace;
+		}
+	}
+}
+
+
+@mixin simplebox_colors($color) {
+	background: $color;
+	border-bottom: .2em solid shade($color, 50%);
+	header {
+		color: tint($color, 98%);
+	}
+	article {
+		color: shade($color, 50%);
+		a {
+			background: shade($color, 50%);
+			color: tint($color, 90%);
+		}
+		pre {
+			background: shade($color, 30%);
+			color: tint($color, 70%);
+		}
+	}
+}
+
+@mixin niceboxes_colors ($color) {
+	$lightcolor: tint($color, 98%);
+	background: $lightcolor;
+	header {
+		color: $lightcolor;
+		background: $color;
+	}
+	article {
+		background: $lightcolor;
+		color: $color;
+		a {
+			background: $color;
+			color: $lightcolor;
+		}
+		pre {
+			background: shade($color, 30%);
+			color: tint($color, 70%);
+			&.green {
+				background: $defaultgreen;
+				color: tint($defaultgreen, 98%);
+			}
+		}
+	}
+}
+
