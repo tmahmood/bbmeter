@@ -14,7 +14,10 @@ module.exports = function(grunt) {
 						'assets/static/*.css'
 					],
 					'public/assets/js/d3_nvd3.min.js': ['vendor/mbostock/d3/d3.min.js', 'assets/js/nv.d3.js'],
-					'public/assets/js/dataproc.min.js': 'assets/js/dataproc.js'
+					'public/assets/js/dataproc.min.js': 'assets/js/dataproc.js',
+					'public/assets/js/compendium.min.js': 'assets/js/compendium.js',
+					'public/assets/js/demography.min.js': 'assets/js/demography.js',
+					'public/assets/js/visual.min.js': 'assets/js/visual.js',
 				}
 			}
 		},

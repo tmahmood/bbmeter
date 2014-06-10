@@ -20,19 +20,25 @@ class HomeController extends BaseController {
 		return View::make('welcome');
 	}
 
-	public function showGraph()
+	public function showCatss()
 	{
-		return View::make('graph');
+		return View::make('catss');
 	}
 
-	function getData()
+	public function showCompendium()
 	{
-		return array (
-				array(
-
-				)
-			);
-
+		return View::make('compendium');
 	}
+
+	public function showDemography()
+	{
+		return View::make('demography');
+	}
+
+	public function showVisualization($param)
+	{
+		return View::make('visual');
+	}
+
 
 }

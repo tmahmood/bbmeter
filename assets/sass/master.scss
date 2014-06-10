@@ -280,7 +280,6 @@ nav {
 			padding: .5em;
 		}
 	}
-
 }
 
 
@@ -289,11 +288,41 @@ nav {
 
 
 #displayopts {
-	width: 100%;
-	height: 20em;
-
+	@include span-columns(9);
+	h1 {
+		padding: 0 0 0 1.2em;
+		margin-bottom: 3em;
+	}
+	height: 30em;
 	.boxes {
 		fill: #eee;
 	}
+}
 
+#questionlist {
+	@include span-columns(3);
+	list-style: none;
+	padding-top: .3em;
+	li {
+		margin: 0;
+		margin-bottom: .6em;
+		padding: .5em;
+		font-size: .9em;
+		box-shadow: 0 .1em .1em shade(#eee, 20%);
+		border-radius: .2em;
+
+		a {
+			@include fill-parent();
+			@include row;
+		}
+
+		&.active {
+			background: tint($defaultgreen, 30%);
+			border-radius: .2em;
+			a {
+				color: tint($defaultblue, 90%);
+			}
+		}
+
+	}
 }

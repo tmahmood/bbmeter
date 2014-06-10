@@ -33,5 +33,8 @@ Route::get('notify', function(){
 		->with('error', 'Went wrong');
 });
 
-Route::get('home/welcome', 'HomeController@showWelcome');
+Route::get('/catss', 'HomeController@showCatss');
+Route::get('/compendium', 'HomeController@showCompendium');
+Route::get('/demography', 'HomeController@showDemography');
+Route::get('/visual', 'HomeController@showVisualization');
 Route::get('/', 'HomeController@showWelcome');

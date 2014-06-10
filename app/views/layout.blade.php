@@ -38,14 +38,24 @@
 		<!-- NAVIGATION -->
 		<nav>
 			<p><img src="assets/imgs/icon-menu.svg"></p>
+
+			<h4>Latest Survey</h4>
+			<a class="_nv_graphs" href="catss">Most Recent Survey Results</a>
+			<a class="_nv_graphs" href="demography">Demography</a>
+
+			<h4>All Survey</h4>
+			<a class="_nv_graphs" href="compendium">All Survey Results</a>
+
+
+			<h4>user</h4>
 			@if (Auth::check())
 			@section('navigation')
-				<h4>user</h4>
 				<a href="/logout">Logout</a>
 			@show
 			@else
 			<a href="/login">Login</a>
 			@endif
+
 		</nav>
 
 		<!-- NOTIFICATIONS -->
