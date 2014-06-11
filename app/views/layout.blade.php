@@ -40,11 +40,11 @@
 			<p><img src="assets/imgs/icon-menu.svg"></p>
 
 			<h4>Latest Survey</h4>
-			<a class="_nv_graphs" href="catss">Most Recent Survey Results</a>
-			<a class="_nv_graphs" href="demography">Demography</a>
+			<a class="_nv_graphs" href="visual#catss_survey_1">Most Recent Survey Results</a>
+			<a class="_nv_graphs" href="visual#catss_survey_demog">Demography</a>
 
 			<h4>All Survey</h4>
-			<a class="_nv_graphs" href="compendium">All Survey Results</a>
+			<a class="_nv_graphs" href="visual#compendium">All Survey Results</a>
 
 
 			<h4>user</h4>
@@ -74,6 +74,7 @@
 		@section('scripts')
 		{{ HTML::script("https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js") }}
 		{{ HTML::script('assets/js/production.min.js') }}
+		{{ HTML::script('assets/js/core.min.js') }}
 		@show
 
 		<!-- NOTIFICATION HANDLE -->

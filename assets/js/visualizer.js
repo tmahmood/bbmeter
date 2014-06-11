@@ -1,16 +1,20 @@
-function Visualizer(datafile, container) {
+function Visualizer(datafile, container, sepchar) {
 	this.container = container;
 	var me = this;
 	this.data_points = {};
 	this.data = [];
 	this.headers = [];
 	this.datafile = datafile;
+	this.sepchar = sepchar;
 }
 
-Visualizer.prototype.loadData = function() {
+Visualizer.prototype.loadData = function(datafile) {
+	if (datafile == undefined) {
+		datafile = this.datafile;
+	}
 	var me = this;
 	me.questions_cleaned = [];
-	d3.json(this.datafile, function(jdata){
+	d3.json(datafile, function(jdata){
 			me.data_points = jdata;
 			for (var ky in jdata) {
 				me.questions_cleaned.push([jdata[ky].key, jdata[ky].type]);

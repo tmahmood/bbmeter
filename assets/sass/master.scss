@@ -54,7 +54,7 @@ header {
 
 
 header#logo  {
-	@include background(linear-gradient(shade($defaultblue, 10%), $defaultblue), left repeat);
+	@include background(linear-gradient(shade(#555, 10%), #444), left repeat);
 	padding: .3em .7em;
 	font-size: .8em;
 	box-shadow: 0 .1em .3em #777;
@@ -64,7 +64,7 @@ header#logo  {
 	h1 {
 		padding: 0 .4em;
 		margin: 0;
-		color: tint($defaultblue, 90%);
+		color: tint(#555, 90%);
 		@include span-columns(11);
 	}
 }
@@ -314,6 +314,7 @@ nav {
 		a {
 			@include fill-parent();
 			@include row;
+			text-transform: uppercase;
 		}
 
 		&.active {

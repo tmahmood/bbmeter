@@ -46,9 +46,9 @@
 			{
 				"key" : "Among the three leaders, on which leader are you satisfied most?",
 				"values": [
-						{ "label" : "Sheikh Hasina", "value" : "42" },
-						{ "label" : "Khaleda Zia", "value" : "43" },
-						{ "label" : "H.M. Ershad", "value" : "15" }
+						{ "label" : "Sheikh Hasina", "value" : 42 },
+						{ "label" : "Khaleda Zia", "value" : 43 },
+						{ "label" : "H.M. Ershad", "value" : 15 }
 					]
 			}, {
 				"key": "Most reliable in fulfilling the commitments given in the time of election",
@@ -57,10 +57,18 @@
 					{ "label": "Khaleda Zia", "value": 44 },
 					{ "label": "H.M. Ershad", "value": 14 }
 				]
+			}, {
+				"key": "Most qualified directing the state",
+				"values": [
+					{ "label": "Sheikh Hasina", "value": 42 },
+					{ "label": "Khaleda Zia", "value": 40 },
+					{ "label": "H.M. Ershad", "value": 18 }
+				]
 			}
+
 		]
 	}, {
-		"key": "Re-Election",
+		"key": "In your opinion, should there be another election within 5 years of current govt and Do you think there will be one?",
 		"type": "GroupedMultiBar",
 		"values" : [
 					{
