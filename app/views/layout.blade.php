@@ -46,6 +46,9 @@
 			<h4>All Survey</h4>
 			<a class="_nv_graphs" href="visual#compendium">All Survey Results</a>
 
+			<h4>Testing</h4>
+			<a class="_nv_graphs" href="visual#test">Test</a>
+
 
 			<h4>user</h4>
 			@if (Auth::check())

@@ -56,6 +56,10 @@ GraphCore.prototype.Pie = function(_data, me) {
 		  .y(function(d) { return d.value })
 		  .showLabels(true);
 
+		if (data.colors != undefined) {
+			chart.color(data.colors)
+		}
+
 		d3.select(me.container + ' svg').text("")
 			.datum(data)
 			.transition()
@@ -72,12 +76,16 @@ GraphCore.prototype.DiscretBar = function(data, me) {
 	  nv.addGraph(function() {
 			 var chart = nv.models.discreteBarChart()
 					.x(function(d) { return d.label; })
-					.y(function(d) { return d.value; })
+					.y(function(d) { return d.value / 100; })
 					.staggerLabels(true)
 					.tooltips(true)
-					.showValues(true)
+					.showValues(false);
 
-			chart.yAxis.tickFormat(d3.format(',.1f'));
+			if (data[0].colors != undefined) {
+				chart.color(data[0].colors)
+			}
+
+			chart.yAxis.tickFormat(d3.format('%'));
 
 			d3.select(me.container + ' svg').text("")
 					.datum(data)
@@ -103,6 +111,10 @@ GraphCore.prototype.GroupedMultiBar= function(_data, me) {
 		  .y(function(d){ return d.value / 100; })
 		;
 
+		if (data.colors != undefined) {
+			chart.color(data.colors)
+		}
+
 		chart.yAxis.tickFormat(d3.format('%'));
 		d3.select(me.container + ' svg').text("")
 			.datum(data)
@@ -113,6 +125,132 @@ GraphCore.prototype.GroupedMultiBar= function(_data, me) {
 		return chart;
 	});
 };
+
+GraphCore.prototype.SimpleLine = function(_data, me) {
+	var data = _data[0];
+	if (data.convertTo != undefined) {
+		console.log(data.values);
+		for (var ik in data.values) {
+			console.log(ik);
+			var d = data.values[ik].values;
+			for (var v in d) {
+				d[v][0] = core.exectueStringAsFunction(data.convertTo, window, d[v]);
+			}
+		}
+	}
+	nv.addGraph(function() {
+		var chart = nv.models.lineWithFocusChart()
+			.x(function(d) {
+				console.log(d[0]);
+				return d[0];
+			})
+			.y(function(d) {
+				console.log(d[1]);
+				return d[1] / 100;
+			})
+			.transitionDuration(750)
+			.showLegend(true);
+
+		if (data.colors != undefined) {
+			chart.color(data.colors)
+		}
+
+		d3.select(me.container + ' svg ').text("")
+		  .datum(data)
+		  .transition().duration(500)
+		  .call(chart);
+
+		nv.utils.windowResize(chart.update);
+		return chart;
+	});
+}
+
+
+GraphCore.prototype.SimpleLine1= function(_data, me) {
+	var data = _data[0].values;
+    nv.addGraph(function() {
+        var chart = nv.models.lineWithFocusChart()
+        .x(function(d) { return d[0] })
+        .y(function(d) { return d[1] / 100 })
+        .transitionDuration(750)
+        .showLegend(true);
+
+		if (data[0].colors != undefined) {
+			chart.color(data[0].colors)
+		}
+
+    chart.xAxis.tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000]) //note: using epoch time = milliseconds since 1/1/1970
+        .tickFormat(function(d) { return d3.time.format('%m/%y')(new Date(d))} )
+        .axisLabel('Month / Year');
+
+    chart.x2Axis.tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000])
+        .tickFormat(function(d) {return d3.time.format('%m/%y')(new Date(d))});
+
+    chart.yAxis
+        .tickFormat(d3.format('%x'))
+        .axisLabel('Percentage');
+
+    chart.y2Axis
+        .tickFormat(d3.format('%x'))
+        .axisLabel('Percentage');
+
+  d3.select(me.container + ' svg ').text("")
+      .datum(data)
+      .transition().duration(500)
+      .call(chart);
+
+  nv.utils.windowResize(chart.update);
+
+  return chart;
+});
+}
+
+GraphCore.prototype.SimpleLine2= function(_data, me) {
+	var data = _data[0].values;
+	nv.addGraph(function() {
+	  var chart = nv.models.lineWithFocusChart()
+			.x(function(d) { return d[0] })
+			.y(function(d) { return d[1] / 100 })
+			.transitionDuration(750)
+			.showLegend(true);
+
+		if (data.colors != undefined) {
+			chart.color(data.colors)
+		}
+
+		chart.xAxis.tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000]) //note: using epoch time = milliseconds since 1/1/1970
+			.tickFormat(function(d) {
+			return d3.time.format('%m/%y')(new Date(d))
+			  })
+			.axisLabel('Month / Year')
+		;
+
+		chart.x2Axis
+	 .tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000]) //note: using epoch time = milliseconds since 1/1/1970
+			.tickFormat(function(d) {
+			return d3.time.format('%m/%y')(new Date(d))
+			  });
+
+		chart.yAxis     //Chart y-axis settings
+			.tickFormat(d3.format('%x'))
+			.axisLabel('Percentage');
+
+		chart.y2Axis
+			.tickFormat(d3.format('%x'))
+			.axisLabel('Percentage');
+
+
+	  d3.select(me.container + ' svg ').text("")
+		  .datum(data)
+		  .transition().duration(500)
+		  .call(chart);
+
+	  nv.utils.windowResize(chart.update);
+
+	  return chart;
+	})
+}
+
 
 GraphCore.prototype.makeSideMenu = function(me, sepchar) {
 
