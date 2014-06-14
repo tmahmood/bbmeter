@@ -29,49 +29,39 @@
 		@show
 	</head>
     <body>
-
-		<!-- HEADER -->
-		<header id="logo">
-			<h1>Bangladesh Barometer</h1>
-		</header>
-
-		<!-- NAVIGATION -->
-		<nav>
-			<p><img src="assets/imgs/icon-menu.svg"></p>
-
-			<h4>Latest Survey</h4>
-			<a class="_nv_graphs" href="visual#catss_survey_1">Most Recent Survey Results</a>
-			<a class="_nv_graphs" href="visual#catss_survey_demog">Demography</a>
-
-			<h4>All Survey</h4>
-			<a class="_nv_graphs" href="visual#compendium">All Survey Results</a>
-
-			<h4>Testing</h4>
-			<a class="_nv_graphs" href="visual#test">Test</a>
-
-
-			<h4>user</h4>
-			@if (Auth::check())
-			@section('navigation')
-				<a href="/logout">Logout</a>
-			@show
-			@else
-			<a href="/login">Login</a>
+		<div id="container">
+			<!-- HEADER -->
+			<header id="logo">
+				<h1>
+					Bangladesh Barometer
+				</h1>
+			</header>
+			<!-- NAVIGATION -->
+			<nav>
+				<p><img src="assets/imgs/icon-menu.svg"></p>
+				<a class="_nv_graphs" href="visual#compendium">All Survey Results</a>
+				<h4>Latest Survey</h4>
+				<a class="_nv_graphs" href="visual#catss_survey_1">Most Recent Survey Results</a>
+				<a class="_nv_graphs" href="visual#catss_survey_demog">Demography</a>
+				<h4>Testing</h4>
+				<a class="_nv_graphs" href="visual#test">Test</a>
+			</nav>
+			<!-- NOTIFICATIONS -->
+			<div id="notifications"></div>
+			<!-- CONTENT -->
+			<main>
+				@yield('content')
+			</main>
+			@if(isset($debug) && $debug != '')
+				<pre>{{ print_r($debug) }}</pre>
 			@endif
+		</div>
 
-		</nav>
-
-		<!-- NOTIFICATIONS -->
-		<div id="notifications"></div>
-
-		<!-- CONTENT -->
-		<main>
-			@yield('content')
-		</main>
-
-		@if(isset($debug) && $debug != '')
-			<pre>{{ print_r($debug) }}</pre>
-		@endif
+		<footer id="footer">
+			<a href="#contact">Contact</a>
+			<a href="#aboutdi">About</a>
+			<img src="assets/imgs/di_logo.png" alt="DI">
+		</footer>
 
 		<!-- SCRIPTS -->
 		@section('scripts')

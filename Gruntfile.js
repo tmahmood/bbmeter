@@ -7,6 +7,14 @@ module.exports = function(grunt) {
 				remote_path: 'ssh://192.168.3.107:/srv/http/bbmeter/'
 			}
 		},
+		copy: {
+			build: {
+				files: [
+					{ expand: true, dest:'public/data/', src: ['assets/data/*'], flatten: true },
+					{ expand: true, dest:'../html/data/', src: ['assets/data/*'], flatten: true }
+				]
+			}
+		},
 		concat: {
 			build: {
 				files: {
@@ -75,6 +83,13 @@ module.exports = function(grunt) {
 				options: {
 					spawn: false,
 				}
+			},
+			copy: {
+				files: ['assets/data/*.json'],
+				tasks: ['copy'],
+				options: {
+					spawn: false
+				}
 			}
 		},
 		sass: {
@@ -95,6 +110,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.registerTask('default', ['concat', 'imagemin', 'sass', 'watch']);
+	grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.registerTask('default', ['concat', 'copy', 'imagemin', 'sass', 'watch']);
 
 };

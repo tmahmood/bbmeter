@@ -7,6 +7,7 @@
 @import '_buttons';
 @import "_notifications";
 @import "_boxes";
+@import "_nav";
 
 
 body {
@@ -47,6 +48,8 @@ h1, h2, h3, h4, h5, h6, legend {
 	font-family: $headingfont, $defaultfont;
 }
 
+
+
 header {
 	font-weight: bold;
 	color: #888;
@@ -64,83 +67,44 @@ header#logo  {
 	h1 {
 		padding: 0 .4em;
 		margin: 0;
-		color: tint(#555, 90%);
 		@include span-columns(11);
-	}
-}
-
-nav {
-
-	$navbg: #333;
-	$navfg: tint($navbg, 70%);
-
-	position: fixed;
-	right: 1em;
-	top: .5em;
-	z-index: 99;
-	font-weight: bold;
-	background: $navbg;
-	color: $navfg;
-
-	border-radius: .2em .2em 0 0;
-
-	p {
-		padding: .5em 1.3em;
-		margin: 0;
-		font-size: .9em;
-		color: tint($navbg, 80%);
-		img {
-			max-width: 18px;
-		}
-	}
-
-	a, h4 {
-		display: none;
-	}
-
-	&:hover {
-		box-shadow: 0 0 .5em #777;
-		width: 15em;
-		padding-bottom: 1em;
-		border-radius: .2em;
-		z-index: 1000002;
-
-		p {
-			display: none;
-		}
-
-		* {
-			display: block;
-		}
-
-		h4 {
-			padding: .2em 1em;
-			text-transform: uppercase;
-			font-size: .8em;
-			color: tint($navbg, 60%);
-			background: tint($navbg, 20%);
-		}
-
-		p {
-			background: shade($navbg, 70%);
-			border-radius: .2em .2em 0 0;
-		}
 
 		a {
-			padding: .6em 1.4em;
-			font-size: .9em;
-			background: $navbg;
-			color: tint($navfg, 30%);
-			text-decoration: none;
-
-			&:hover {
-				background: shade($navbg, 30%);
-				color: tint($navbg, 70%);
+			color: tint($defaultblue, 30%);
+			&:hover{
+				text-decoration: none;
 			}
+		}
+
+		img {
+
+			padding: .1em;
 		}
 	}
 }
 
+footer  {
+	$c: tint(#555, 90%);
+	background: $c;
+	box-shadow: 0 -0.1em 0.2em #ccc;
+	padding: 1.2em 2em .4em 1em;
+	text-align:  right;
+	font-size: .9em;
+
+	img {
+		margin-left: 3em;
+	}
+
+	a {
+		color: #888;
+		padding: .3em;
+		font-weight: bold;
+		vertical-align: middle;
+		text-transform: uppercase;
+		margin-left: 1em;
+
+	}
+}
 
 @include formstyle($defaultblue, 20);
 @include datatable($defaultblue);
@@ -291,7 +255,14 @@ nav {
 	@include span-columns(9);
 	h1 {
 		padding: 0 0 0 1.2em;
-		margin-bottom: 3em;
+		margin-bottom: .6em;
+		p {
+			font-size: .6em;
+			text-align: center;
+			font-weight: normal;
+			color: #999;
+			text-transform: uppercase;
+		}
 	}
 	height: 30em;
 	.boxes {
@@ -310,15 +281,19 @@ nav {
 		font-size: .9em;
 		box-shadow: 0 .1em .1em shade(#eee, 20%);
 		border-radius: .2em;
+		background: #fff;
 
 		a {
 			@include fill-parent();
 			@include row;
 			text-transform: uppercase;
+			&:hover {
+				text-decoration: none;
+			}
 		}
 
 		&.active {
-			background: tint($defaultgreen, 30%);
+			background: tint($defaultblue, 30%);
 			border-radius: .2em;
 			a {
 				color: tint($defaultblue, 90%);
@@ -327,3 +302,6 @@ nav {
 
 	}
 }
+
+@include sticky-footer(4em);
+

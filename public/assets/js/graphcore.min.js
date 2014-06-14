@@ -56,8 +56,8 @@ GraphCore.prototype.Pie = function(_data, me) {
 		  .y(function(d) { return d.value })
 		  .showLabels(true);
 
-		if (data.colors != undefined) {
-			chart.color(data.colors)
+		if (_data[0].colors != undefined) {
+			chart.color(_data[0].colors);
 		}
 
 		d3.select(me.container + ' svg').text("")
@@ -111,8 +111,8 @@ GraphCore.prototype.GroupedMultiBar= function(_data, me) {
 		  .y(function(d){ return d.value / 100; })
 		;
 
-		if (data.colors != undefined) {
-			chart.color(data.colors)
+		if (_data[0].colors != undefined) {
+			chart.color(_data[0].colors)
 		}
 
 		chart.yAxis.tickFormat(d3.format('%'));
@@ -151,8 +151,8 @@ GraphCore.prototype.SimpleLine = function(_data, me) {
 			.transitionDuration(750)
 			.showLegend(true);
 
-		if (data.colors != undefined) {
-			chart.color(data.colors)
+		if (_data[0].colors != undefined) {
+			chart.color(_data[0].colors)
 		}
 
 		d3.select(me.container + ' svg ').text("")
@@ -175,15 +175,15 @@ GraphCore.prototype.SimpleLine1= function(_data, me) {
         .transitionDuration(750)
         .showLegend(true);
 
-		if (data[0].colors != undefined) {
-			chart.color(data[0].colors)
+		if (_data[0].colors != undefined) {
+			chart.color(_data[0].colors)
 		}
 
-    chart.xAxis.tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000]) //note: using epoch time = milliseconds since 1/1/1970
+    chart.xAxis.tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000, 1399053600000]) //note: using epoch time = milliseconds since 1/1/1970
         .tickFormat(function(d) { return d3.time.format('%m/%y')(new Date(d))} )
         .axisLabel('Month / Year');
 
-    chart.x2Axis.tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000])
+    chart.x2Axis.tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000, 1399053600000])
         .tickFormat(function(d) {return d3.time.format('%m/%y')(new Date(d))});
 
     chart.yAxis
@@ -214,22 +214,21 @@ GraphCore.prototype.SimpleLine2= function(_data, me) {
 			.transitionDuration(750)
 			.showLegend(true);
 
-		if (data.colors != undefined) {
-			chart.color(data.colors)
+		if (_data[0].colors != undefined) {
+			chart.color(_data[0].colors)
 		}
 
-		chart.xAxis.tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000]) //note: using epoch time = milliseconds since 1/1/1970
+		chart.xAxis.tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000, 1399053600000]) //note: using epoch time = milliseconds since 1/1/1970
 			.tickFormat(function(d) {
-			return d3.time.format('%m/%y')(new Date(d))
+				return d3.time.format('%m/%y')(new Date(d))
 			  })
 			.axisLabel('Month / Year')
 		;
 
-		chart.x2Axis
-	 .tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000]) //note: using epoch time = milliseconds since 1/1/1970
+		chart.x2Axis.tickValues([1354286240000,1364740640000,1367332640000,1375281440000,1383230240000,1385822240000,1391179040000, 1399053600000]) //note: using epoch time = milliseconds since 1/1/1970
 			.tickFormat(function(d) {
-			return d3.time.format('%m/%y')(new Date(d))
-			  });
+				return d3.time.format('%m/%y')(new Date(d))
+		  });
 
 		chart.yAxis     //Chart y-axis settings
 			.tickFormat(d3.format('%x'))
@@ -270,8 +269,14 @@ GraphCore.prototype.makeSideMenu = function(me, sepchar) {
 		$('#questionlist li').removeClass('active');
 		$(this).parent().addClass('active');
 		var dictkey = this.href.split('#').pop().split('_');
+
 		graphcore.drawChart(dictkey[1], [me.data_points[dictkey[0]]] , me);
 		d3.select(me.container + ' h1').text($(this).text());
+		var date = me.data_points[dictkey[0]]['date'];
+		if (date != undefined) {
+			d3.select(me.container + ' h1').append('p').text(date);
+		}
+
 	});
 
 	$('#questionlist li a').first().trigger('click');
