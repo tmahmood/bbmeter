@@ -33,7 +33,7 @@
 			<!-- HEADER -->
 			<header id="logo">
 				<h1>
-					Bangladesh Barometer
+					<a class="_txt_" href="#">Bangladesh Barometer</a>
 				</h1>
 			</header>
 			<!-- NAVIGATION -->
@@ -50,7 +50,11 @@
 			<div id="notifications"></div>
 			<!-- CONTENT -->
 			<main>
-				@yield('content')
+				<div id="frontend">
+				</div>
+				<div id="graphcontent">
+					@yield('content')
+				</div>
 			</main>
 			@if(isset($debug) && $debug != '')
 				<pre>{{ print_r($debug) }}</pre>
@@ -58,8 +62,8 @@
 		</div>
 
 		<footer id="footer">
-			<a href="#contact">Contact</a>
-			<a href="#aboutdi">About</a>
+			<a class="_txt_" href="#contact">Contact</a>
+			<a class="_txt_" href="#aboutdi">About</a>
 			<img src="assets/imgs/di_logo.png" alt="DI">
 		</footer>
 

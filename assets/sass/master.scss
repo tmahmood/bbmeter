@@ -15,6 +15,33 @@ body {
 	background: $backgroundcolor;
 	padding: 0;
 	margin: 0;
+
+}
+
+#frontend {
+	background: url('../imgs/02.jpg') no-repeat $backgroundcolor;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	padding: 20em;
+
+	p {
+		background: #eee;
+		padding: 2em;
+		border-radius: .3em;
+		box-shadow: 0 0 0.3em 0.2em #555;
+	}
+
+	&.distback {
+		z-index: -1;
+		opacity: .1;
+		p {
+			display: none;
+		}
+	}
 }
 
 main {
@@ -53,6 +80,7 @@ h1, h2, h3, h4, h5, h6, legend {
 header {
 	font-weight: bold;
 	color: #888;
+	z-index: 100;
 }
 
 
@@ -60,7 +88,7 @@ header#logo  {
 	@include background(linear-gradient(shade(#555, 10%), #444), left repeat);
 	padding: .3em .7em;
 	font-size: .8em;
-	box-shadow: 0 .1em .3em #777;
+	box-shadow: 0 .1em .3em #555;
 	position: fixed;
 	width: 100%;
 
@@ -83,8 +111,22 @@ header#logo  {
 	}
 }
 
+#container {
+	opacity: 100;
+	margin-bottom: 14em;
+
+}
+
 footer  {
+	// @include sticky-footer(4em);
 	$c: tint(#555, 90%);
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	height: 5em;
+
+
 	background: $c;
 	box-shadow: 0 -0.1em 0.2em #ccc;
 	padding: 1.2em 2em .4em 1em;
@@ -256,7 +298,15 @@ footer  {
 	h1 {
 		padding: 0 0 0 1.2em;
 		margin-bottom: .6em;
-		p {
+		#gp_details {
+			font-size: .6em;
+			color: #666;
+			background: #ccc;
+			padding: .5em;
+			box-shadow: 0 .1em 0 #888;
+		}
+
+		#gp_date {
 			font-size: .6em;
 			text-align: center;
 			font-weight: normal;
@@ -274,6 +324,8 @@ footer  {
 	@include span-columns(3);
 	list-style: none;
 	padding-top: .3em;
+
+
 	li {
 		margin: 0;
 		margin-bottom: .6em;
@@ -303,5 +355,4 @@ footer  {
 	}
 }
 
-@include sticky-footer(4em);
 

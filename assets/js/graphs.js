@@ -1,6 +1,8 @@
 function GraphCore(opts) {
 	this.opts = opts == null ?  opts : {};
 	this.colordict = {};
+	this.event_set = false;
+	this.loading = false;
 }
 
 var graphcore = new GraphCore();
@@ -179,18 +181,30 @@ GraphCore.prototype.makeSideMenu = function(me, sepchar) {
 	d3.select('svg').text("");
 
 	$(document).on('click', '.selgraphtodisplay', function(ev){
+
 		ev.preventDefault();
+
 		$('#questionlist li').removeClass('active');
 		$(this).parent().addClass('active');
 		var dictkey = this.href.split('#').pop().split('_');
 
-		graphcore.drawChart(dictkey[1], [me.data_points[dictkey[0]]] , me);
+		var currentdata = me.data_points[dictkey[0]]
+
+		graphcore.drawChart(dictkey[1], [currentdata] , me);
 		d3.select(me.container + ' h1').text($(this).text());
-		var date = me.data_points[dictkey[0]]['date'];
-		if (date != undefined) {
-			d3.select(me.container + ' h1').append('p').text(date);
+		if ( currentdata['description']!= undefined) {
+			d3.select(me.container + ' h1')
+				.append('p')
+				.attr('id', 'gp_details')
+				.text(currentdata.description);
 		}
 
+		var date = currentdata['date'];
+		if (date != undefined) {
+			d3.select(me.container + ' h1')
+				.append('p')
+				.attr('id', 'gp_date').text(date);
+		}
 	});
 
 	$('#questionlist li a').first().trigger('click');

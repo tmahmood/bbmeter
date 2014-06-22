@@ -6,12 +6,14 @@ function Visualizer(datafile, container, sepchar) {
 	this.headers = [];
 	this.datafile = datafile;
 	this.sepchar = sepchar;
+	this.loading = false;
 }
 
 Visualizer.prototype.loadData = function(datafile) {
 	if (datafile == undefined) {
 		datafile = this.datafile;
 	}
+
 	var me = this;
 	me.questions_cleaned = [];
 	d3.json(datafile, function(jdata){
@@ -20,6 +22,7 @@ Visualizer.prototype.loadData = function(datafile) {
 				me.questions_cleaned.push([jdata[ky].key, jdata[ky].type]);
 			}
 			graphcore.makeSideMenu(me);
+			me.loading = false;
 		});
 	return this;
 };

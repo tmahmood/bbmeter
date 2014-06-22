@@ -11,11 +11,6 @@
 |
 */
 
-Route::get('/', 'HomeController@showWelcome');
-
-Route::get('/graph', 'HomeController@showGraph');
-
-
 
 Route::group(array('before'=>'auth'), function() {
 
@@ -33,5 +28,5 @@ Route::get('notify', function(){
 		->with('error', 'Went wrong');
 });
 
+Route::get('/', 'HomeController@showVisualization');
 Route::get('/visual', 'HomeController@showVisualization');
-Route::get('/', 'HomeController@showWelcome');
