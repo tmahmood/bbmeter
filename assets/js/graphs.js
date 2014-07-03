@@ -167,7 +167,7 @@ GraphCore.prototype.SimpleLine= function(_data, me) {
 }
 
 
-GraphCore.prototype.makeSideMenu = function(me, sepchar) {
+GraphCore.prototype.makeSideMenu = function(me, graph) {
 
 	d3.select('#questionlist').text("")
 		.selectAll('li').data(me.questions_cleaned)
@@ -175,6 +175,7 @@ GraphCore.prototype.makeSideMenu = function(me, sepchar) {
 			.append('li')
 				.append('a')
 					.attr('href', function(d, i) { return "#" + i + "_" + d[1]; })
+					.attr('id', function(d, i) { return i + "_" + d[1]; })
 					.attr('class', 'selgraphtodisplay')
 					.text(function(d){ return d[0]; });
 
@@ -186,13 +187,21 @@ GraphCore.prototype.makeSideMenu = function(me, sepchar) {
 
 		$('#questionlist li').removeClass('active');
 		$(this).parent().addClass('active');
-		var dictkey = this.href.split('#').pop().split('_');
 
+		var dictkey = this.href.split('#').pop().split('_');
 		var currentdata = me.data_points[dictkey[0]]
+
+		var h = dictkey.join('_');
+
+		var th = document.location.hash.split(',').shift();
+
+
+		document.location.hash = th + ',' + h;
 
 		graphcore.drawChart(dictkey[1], [currentdata] , me);
 		d3.select(me.container + ' h1').text($(this).text());
-		if ( currentdata['description']!= undefined) {
+
+		if (currentdata['description']!= undefined) {
 			d3.select(me.container + ' h1')
 				.append('p')
 				.attr('id', 'gp_details')

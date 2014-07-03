@@ -33,7 +33,7 @@
 			<!-- HEADER -->
 			<header id="logo">
 				<h1>
-					<a class="_txt_" href="#">Bangladesh Barometer</a>
+					<a class="_txt_" href="#txt$frontpage">Bangladesh Barometer</a>
 				</h1>
 			</header>
 			<!-- NAVIGATION -->
@@ -43,6 +43,7 @@
 				<h4>Latest Survey</h4>
 				<a class="_nv_graphs" href="visual#catss_survey_1">Most Recent Survey Results</a>
 				<a class="_nv_graphs" href="visual#catss_survey_demog">Demography</a>
+				<a class="_nv_graphs" href="visual#mmedia">Media Monitoring</a>
 				<h4>Testing</h4>
 				<a class="_nv_graphs" href="visual#test">Test</a>
 			</nav>
@@ -51,6 +52,8 @@
 			<!-- CONTENT -->
 			<main>
 				<div id="frontend">
+				</div>
+				<div id="textcontainer">
 				</div>
 				<div id="graphcontent">
 					@yield('content')
@@ -62,8 +65,8 @@
 		</div>
 
 		<footer id="footer">
-			<a class="_txt_" href="#contact">Contact</a>
-			<a class="_txt_" href="#aboutdi">About</a>
+			<a class="_txt_" href="#txt$contact">Contact</a>
+			<a class="_txt_" href="#txt$aboutdi">About</a>
 			<img src="assets/imgs/di_logo.png" alt="DI">
 		</footer>
 

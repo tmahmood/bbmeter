@@ -18,29 +18,91 @@ body {
 
 }
 
-#frontend {
-	background: url('../imgs/02.jpg') no-repeat $backgroundcolor;
-	position: fixed;
+%fullscreendiv {
+	position: relative;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 60em;
+	padding: 1em 3em;
+
+	h1 {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		background: #444;
+		color: #fff;
+		padding: .4em;
+	}
+
+	p {
+		background: #555;
+		color: #eee;
+		padding: 2em;
+		border-radius: .3em;
+	}
+}
+
+%fb {
+	position: absolute;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	width: 100%;
 	height: 100%;
-	padding: 20em;
+	top: 2.5em;
 
-	p {
-		background: #eee;
-		padding: 2em;
-		border-radius: .3em;
-		box-shadow: 0 0 0.3em 0.2em #555;
+	.slidechange, {
+		z-index: 1000;
+		position: fixed;
+		padding: .6em 1em;
+
+		background: #fff;
+		font-size: 1.2em;
+		font-weight: bold;
+		text-transform: uppercase;
+		width: 8em;
+		text-align: center;
 	}
 
-	&.distback {
-		z-index: -1;
-		opacity: .1;
-		p {
-			display: none;
+	.prev {
+		left: 1em;
+		bottom: 5em;
+	}
+
+	.next {
+		bottom: 5em;
+		right: 1em;
+	}
+
+
+	div {
+		position: relative;
+		width: 100%;
+		height: 100%;
+
+		div {
+			@extend %fullscreendiv;
 		}
+
+	}
+
+
+	&.distback {
+		display: none;
+	}
+}
+
+#frontend {
+	@extend %fb;
+}
+
+#textcontainer  {
+	@extend %fb;
+	div {
+		@extend %fullscreendiv;
 	}
 }
 

@@ -9,7 +9,7 @@ function Visualizer(datafile, container, sepchar) {
 	this.loading = false;
 }
 
-Visualizer.prototype.loadData = function(datafile) {
+Visualizer.prototype.loadData = function(datafile, graph) {
 	if (datafile == undefined) {
 		datafile = this.datafile;
 	}
@@ -21,9 +21,15 @@ Visualizer.prototype.loadData = function(datafile) {
 			for (var ky in jdata) {
 				me.questions_cleaned.push([jdata[ky].key, jdata[ky].type]);
 			}
-			graphcore.makeSideMenu(me);
+
+			graphcore.makeSideMenu(me, graph);
 			me.loading = false;
+
+			if (graph != '') {
+				$('#' + graph).trigger('click');
+			}
 		});
+
 	return this;
 };
 

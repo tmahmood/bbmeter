@@ -149,6 +149,17 @@ function goToTop_Event () {
 	});
 }
 
+
+function gotoAnchor(anchor) {
+	$(document).on('click', anchor, function(ev){
+		ev.preventDefault();
+		$root.animate({
+			scrollTop: $('#' + this.href.split('#').pop()).offset().top
+		}, 500);
+	});
+}
+
+
 function notification_Event () {
 	$(document).on('click', '#notifications li', function(){
 		$(this).hide();
@@ -273,5 +284,11 @@ Core.prototype.exectueStringAsFunction = function(funcname, window) {
 		context = context[namespaces[i]];
 	}
 	return context[func].apply(this, args);
+};
+
+Core.prototype.moveTo = function(toelm) {
+	$root.animate({
+		scrollTop: $(toelm).offset().top
+	}, 500);
 };
 
