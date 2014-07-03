@@ -33,7 +33,7 @@
 			<!-- HEADER -->
 			<header id="logo">
 				<h1>
-					<a class="_txt_" href="#txt$frontpage">Bangladesh Barometer</a>
+					<a class="_txt_" href="#txt$frontpage"><img src="assets/imgs/logo.png" alt="Bangladesh Barometer"></a>
 				</h1>
 			</header>
 			<!-- NAVIGATION -->
