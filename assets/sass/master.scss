@@ -25,7 +25,7 @@ body {
 	bottom: 0;
 	width: 100%;
 	height: 60em;
-	padding: 1em 3em;
+	padding: 0 3em;
 
 	h1 {
 		position: relative;
@@ -35,6 +35,7 @@ body {
 		background: #444;
 		color: #fff;
 		padding: .4em;
+		margin-top: 0;
 	}
 
 	p {
@@ -52,9 +53,9 @@ body {
 	bottom: 0;
 	width: 100%;
 	height: 100%;
-	top: 2.5em;
+	top: 5em;
 
-	.slidechange, {
+	.slidechange {
 		z-index: 1000;
 		position: fixed;
 		padding: .6em 1em;
@@ -65,6 +66,9 @@ body {
 		text-transform: uppercase;
 		width: 8em;
 		text-align: center;
+
+		box-shadow: 0 0 .1em 0 #555;
+		border-radius: .1em;
 	}
 
 	.prev {
@@ -82,6 +86,7 @@ body {
 		position: relative;
 		width: 100%;
 		height: 100%;
+		padding-top: 0;
 
 		div {
 			@extend %fullscreendiv;
@@ -107,7 +112,7 @@ body {
 }
 
 main {
-	padding: 3em 1.2em .2em;
+	padding: 6em 1.2em .2em;
 	@include outer-container;
 }
 
