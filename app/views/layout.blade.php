@@ -16,7 +16,7 @@
 
 		<!-- GOOGLE FONTS -->
 
-		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700'
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,300,300italic|Roboto+Condensed:400,700'
 			rel='stylesheet' type='text/css'>
 
 		<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'

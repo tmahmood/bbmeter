@@ -1,18 +1,20 @@
 nav {
 	z-index: 10000;
+	font-family: $headingfont;
 
 	@media (min-width: 761px){
 		p, h4 {
 			display: none;
 		}
 		position: fixed;
-		top: 1em;
+		top: 3.6em;
 		$navbg: #333;
 		$navfg: tint($navbg, 70%);
 		text-transform: uppercase;
 		font-size: .8em;
 		font-weight: bold;
 		right: 1.5em;
+
 		a {
 			color: tint($navbg, 60%);
 			padding: .3em;

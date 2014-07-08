@@ -286,9 +286,12 @@ Core.prototype.exectueStringAsFunction = function(funcname, window) {
 	return context[func].apply(this, args);
 };
 
-Core.prototype.moveTo = function(toelm) {
+Core.prototype.moveTo = function(toelm, pad) {
+	if (pad == undefined) {
+		pad = 0;
+	}
 	$root.animate({
-		scrollTop: $(toelm).offset().top
+		scrollTop: $(toelm).offset().top + pad
 	}, 500);
 };
 

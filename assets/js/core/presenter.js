@@ -15,7 +15,6 @@ Presenter.prototype.getID = function(id) {
 
 
 Presenter.prototype.prepearePresentation = function() {
-	var me = this;
 	this.divheight = $(window).height();
 
 	var dv = createElement({ element: 'div', 'id': this.id });
@@ -32,6 +31,16 @@ Presenter.prototype.prepearePresentation = function() {
 
 	this.$e.append(nl);
 	this.$e.append(pl);
+
+	this.onSlideChange();
+
+	core.moveTo(this.elm, -100);
+	$('.prev').hide();
+	return this;
+};
+
+Presenter.prototype.onSlideChange = function() {
+	var me = this;
 
 	$(document).on('click', '.slidechange', function(ev){
 		ev.preventDefault();
@@ -53,19 +62,9 @@ Presenter.prototype.prepearePresentation = function() {
 			$('.next').show();
 		}
 
-		core.moveTo('#' + me.getID('slide_' + me.currentslide));
+		core.moveTo('#' + me.getID('slide_' + me.currentslide) + ' h1', -85);
 	});
-
-	core.moveTo(this.elm);
-	$('.prev').hide();
-	return this;
-};
-
-Presenter.prototype.resetSlides = function() {
-	core.moveTo(this.elm);
-	$('.prev').hide();
-	this.currentslide = 0;
-};
+}
 
 Presenter.prototype.hasNextSlide = function() {
 	return !(this.currentslide + 1 >= this.slides.length);
