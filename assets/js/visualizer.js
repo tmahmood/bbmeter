@@ -16,10 +16,26 @@ Visualizer.prototype.loadData = function(datafile, graph) {
 
 	var me = this;
 	me.questions_cleaned = [];
+
 	d3.json(datafile, function(jdata){
 			me.data_points = jdata;
+			me.groups = [];
+
 			for (var ky in jdata) {
-				me.questions_cleaned.push([jdata[ky].key, jdata[ky].type]);
+
+				if (jdata[ky]['group'] != undefined) {
+					if (me.groups.indexOf(jdata[ky].group) < 0) {
+						me.groups.push(jdata[ky]['group']);
+					}
+				} else {
+					jdata[ky]['group'] = 'No Group';
+					if (me.groups.indexOf("No Group") < 0) {
+						me.groups.push('No Group');
+					}
+				}
+
+				me.questions_cleaned.push([jdata[ky].key, jdata[ky].type, jdata[ky].group]);
+
 			}
 
 			graphcore.makeSideMenu(me, graph);

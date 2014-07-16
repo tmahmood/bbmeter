@@ -47,12 +47,12 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: 'assets/imgs/',
-					src: ['**/*.{png,jpg,gif}'],
+					src: ['**/*.{png,jpg,gif,svg}'],
 					dest: 'public/assets/imgs/'
 				}, {
 					expand: true,
 					cwd: 'assets/imgs/',
-					src: ['**/*.{png,jpg,gif}'],
+					src: ['**/*.{png,jpg,gif,svg}'],
 					dest: '../html/assets/imgs/'
 				}]
 			}
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
 				}
 			},
 			images: {
-				files: ['assets/imgs/*.{png,jpg,gif}'],
+				files: ['assets/imgs/*.{png,jpg,gif,svg}'],
 				tasks: ['imagemin'],
 				options: {
 					spawn: false,

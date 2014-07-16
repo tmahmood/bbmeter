@@ -169,17 +169,40 @@ GraphCore.prototype.SimpleLine= function(_data, me) {
 
 GraphCore.prototype.makeSideMenu = function(me, graph) {
 
+	console.log(me.questions_cleaned);
+
 	d3.select('#questionlist').text("")
 		.selectAll('li').data(me.questions_cleaned)
 		.enter()
 			.append('li')
+				.attr('class', function(d) { console.log(d); return d[2].replace(/ /g, '_'); })
 				.append('a')
 					.attr('href', function(d, i) { return "#" + i + "_" + d[1]; })
 					.attr('id', function(d, i) { return i + "_" + d[1]; })
-					.attr('class', 'selgraphtodisplay')
+					.attr('class', function(d, i) {
+						return 'selgraphtodisplay';
+					})
 					.text(function(d){ return d[0]; });
 
+
 	d3.select('svg').text("");
+
+	d3.select('#groupmenu').text("")
+		.selectAll('li').data(me.groups)
+		.enter()
+			.append('li')
+			.attr('class', 'gmenu_items')
+				.append('a')
+					.attr('href', function(d, i) { return '#' + d.replace(/ /g, '_'); })
+					.text(function(d) { return d; });
+
+	$(document).on('click', '.gmenu_items a', function(ev){
+		ev.preventDefault();
+		var toshow = this.href.split('#').pop();
+		$('#questionlist li').hide();
+		$('#questionlist .' + toshow).show();
+
+	});
 
 	$(document).on('click', '.selgraphtodisplay', function(ev){
 

@@ -1,6 +1,8 @@
 @extends('layout')
 @section('content')
 
+	<ul id="groupmenu"></ul>
+
 	<ul id="questionlist"></ul>
 	<div id="displayopts">
 		<h1></h1>

@@ -172,8 +172,8 @@ header#logo  {
 		}
 
 		img {
-
 			padding: .1em;
+			height: 3em;
 		}
 	}
 }
@@ -361,7 +361,7 @@ footer  {
 
 
 #displayopts {
-	@include span-columns(9);
+	@include span-columns(8);
 	h1 {
 		padding: 0 0 0 1.2em;
 		margin-bottom: .6em;
@@ -387,11 +387,29 @@ footer  {
 	}
 }
 
+#groupmenu {
+
+	margin: .8em 0;
+	padding: .3em 0;
+	list-style: none;
+	list-style-position: inside;
+
+	@include span-columns(1);
+
+	li {
+		margin: .3em 0;
+		padding: .3em;
+		border-bottom: .1em solid #ddd;
+		text-transform: uppercase;
+		font-size: .9em;
+	}
+}
+
 #questionlist {
+
 	@include span-columns(3);
 	list-style: none;
 	padding-top: .3em;
-
 
 	li {
 		margin: 0;
