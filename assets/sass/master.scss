@@ -348,7 +348,6 @@ footer  {
 
 	#selected_sms_form {
 		@include row;
-
 		form>div:last-child {
 			padding: .5em;
 		}
@@ -361,9 +360,8 @@ footer  {
 
 
 #displayopts {
-	@include span-columns(8);
 	h1 {
-		padding: 0 0 0 1.2em;
+		padding: 0;
 		margin-bottom: .6em;
 		#gp_details {
 			font-size: .6em;
@@ -381,6 +379,7 @@ footer  {
 			text-transform: uppercase;
 		}
 	}
+
 	height: 30em;
 	.boxes {
 		fill: #eee;
@@ -389,27 +388,64 @@ footer  {
 
 #groupmenu {
 
-	margin: .8em 0;
-	padding: .3em 0;
-	list-style: none;
-	list-style-position: inside;
+	ul {
+		margin: .8em 0 0;
+		padding: .3em 0;
+		list-style: none;
+		list-style-position: inside;
 
-	@include span-columns(1);
+		li {
+			margin: .3em 0;
+			padding: .4em;
+			text-transform: uppercase;
+			font-size: 0.9em;
+			border-bottom: .1em inset #ccc;
 
-	li {
-		margin: .3em 0;
-		padding: .3em;
-		border-bottom: .1em solid #ddd;
-		text-transform: uppercase;
-		font-size: .9em;
+			&:last-child {
+				border: none;
+			}
+
+
+			&.active {
+				padding: .1em;
+				font-size: 1.8em;
+				color: shade($defaultblue, 40%);
+				border-bottom: .2em solid #ddd;
+
+				&:after {
+					content: '▾';
+					padding: 0 .4em;
+					position: relative;
+					top: 0;
+				}
+
+			}
+
+
+		}
+
+		&.hovermenu {
+			box-shadow: 0 .3em .3em #bbb;
+			width: 17em;
+			border-radius: .2em;
+			border: .1em solid #ddd;
+
+			a {
+				color: #555;
+			}
+		}
 	}
+
+
 }
 
 #questionlist {
 
-	@include span-columns(3);
 	list-style: none;
+	padding: 0;
 	padding-top: .3em;
+	margin: 1em 0;
+
 
 	li {
 		margin: 0;
@@ -440,4 +476,38 @@ footer  {
 	}
 }
 
+
+@media (min-width: 801px) {
+
+	#questionlist {
+		@include span-columns(2);
+	}
+
+	#displayopts {
+		@include span-columns(10);
+	}
+}
+
+
+@media (max-width: 800px) and (min-width: 601px) {
+
+	#questionlist {
+		@include span-columns(4);
+	}
+
+	#displayopts {
+		@include span-columns(8);
+	}
+}
+
+@media (max-width: 600px) {
+
+	#questionlist {
+		@include row;
+	}
+
+	#displayopts {
+		@include row;
+	}
+}
 

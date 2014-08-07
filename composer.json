@@ -4,8 +4,8 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.1.*",
-		"doctrine/dbal": "~2.3",
+		"laravel/framework": "*",
+		"doctrine/dbal": "*",
 		"components/jquery": "1.9",
 		"components/jqueryui": "1.10.4",
 		"way/generators": "*",

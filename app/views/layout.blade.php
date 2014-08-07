@@ -44,6 +44,7 @@
 				<a class="_nv_graphs" href="visual#catss_survey_1">Most Recent Survey Results</a>
 				<a class="_nv_graphs" href="visual#catss_survey_demog">Demography</a>
 				<a class="_nv_graphs" href="visual#mmedia">Media Monitoring</a>
+				<a class="_nv_graphs" href="visual#media_survey">Media Survey</a>
 				<h4>Testing</h4>
 				<a class="_nv_graphs" href="visual#test">Test</a>
 			</nav>

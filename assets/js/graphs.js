@@ -41,15 +41,15 @@ GraphCore.prototype.generateColor = function(d) {
 }
 
 
-GraphCore.prototype.drawChart = function(charttype, data, me) {
+GraphCore.prototype.drawChart = function(charttype, data, src) {
 	  if (data == undefined) {
 		  throw "No data provided";
 	  }
-	  this[charttype](data, me);
+	  this[charttype](data, src);
 };
 
 
-GraphCore.prototype.Pie = function(_data, me) {
+GraphCore.prototype.Pie = function(_data, src) {
 	//Regular pie chart example
 	var data = _data[0].values;
 	nv.addGraph(function() {
@@ -62,7 +62,7 @@ GraphCore.prototype.Pie = function(_data, me) {
 			chart.color(_data[0].colors);
 		}
 
-		d3.select(me.container + ' svg').text("")
+		d3.select(src.container + ' svg').text("")
 			.datum(data)
 			.transition()
 			.duration(350)
@@ -73,7 +73,7 @@ GraphCore.prototype.Pie = function(_data, me) {
 }
 
 
-GraphCore.prototype.DiscretBar = function(data, me) {
+GraphCore.prototype.DiscretBar = function(data, src) {
 
 	  nv.addGraph(function() {
 			 var chart = nv.models.discreteBarChart()
@@ -89,7 +89,7 @@ GraphCore.prototype.DiscretBar = function(data, me) {
 
 			chart.yAxis.tickFormat(d3.format('%'));
 
-			d3.select(me.container + ' svg').text("")
+			d3.select(src.container + ' svg').text("")
 					.datum(data)
 					.transition()
 					.duration(0)
@@ -100,7 +100,7 @@ GraphCore.prototype.DiscretBar = function(data, me) {
 }
 
 
-GraphCore.prototype.GroupedMultiBar= function(_data, me) {
+GraphCore.prototype.GroupedMultiBar= function(_data, src) {
 	var data = _data[0].values;
 	nv.addGraph(function() {
 		var chart = nv.models.multiBarChart()
@@ -118,7 +118,7 @@ GraphCore.prototype.GroupedMultiBar= function(_data, me) {
 		}
 
 		chart.yAxis.tickFormat(d3.format('%'));
-		d3.select(me.container + ' svg').text("")
+		d3.select(src.container + ' svg').text("")
 			.datum(data)
 			.call(chart);
 
@@ -128,7 +128,7 @@ GraphCore.prototype.GroupedMultiBar= function(_data, me) {
 	});
 };
 
-GraphCore.prototype.SimpleLine= function(_data, me) {
+GraphCore.prototype.SimpleLine= function(_data, src) {
 	var data = _data[0].values;
     nv.addGraph(function() {
 		var chart = nv.models.lineWithFocusChart()
@@ -156,7 +156,7 @@ GraphCore.prototype.SimpleLine= function(_data, me) {
 			.tickFormat(d3.format('%x'))
 			.axisLabel('Percentage');
 
-		d3.select(me.container + ' svg ').text("")
+		d3.select(src.container + ' svg ').text("")
 			.datum(data)
 			.transition().duration(500)
 			.call(chart);
@@ -165,82 +165,4 @@ GraphCore.prototype.SimpleLine= function(_data, me) {
 		return chart;
 	});
 }
-
-
-GraphCore.prototype.makeSideMenu = function(me, graph) {
-
-	console.log(me.questions_cleaned);
-
-	d3.select('#questionlist').text("")
-		.selectAll('li').data(me.questions_cleaned)
-		.enter()
-			.append('li')
-				.attr('class', function(d) { console.log(d); return d[2].replace(/ /g, '_'); })
-				.append('a')
-					.attr('href', function(d, i) { return "#" + i + "_" + d[1]; })
-					.attr('id', function(d, i) { return i + "_" + d[1]; })
-					.attr('class', function(d, i) {
-						return 'selgraphtodisplay';
-					})
-					.text(function(d){ return d[0]; });
-
-
-	d3.select('svg').text("");
-
-	d3.select('#groupmenu').text("")
-		.selectAll('li').data(me.groups)
-		.enter()
-			.append('li')
-			.attr('class', 'gmenu_items')
-				.append('a')
-					.attr('href', function(d, i) { return '#' + d.replace(/ /g, '_'); })
-					.text(function(d) { return d; });
-
-	$(document).on('click', '.gmenu_items a', function(ev){
-		ev.preventDefault();
-		var toshow = this.href.split('#').pop();
-		$('#questionlist li').hide();
-		$('#questionlist .' + toshow).show();
-
-	});
-
-	$(document).on('click', '.selgraphtodisplay', function(ev){
-
-		ev.preventDefault();
-
-		$('#questionlist li').removeClass('active');
-		$(this).parent().addClass('active');
-
-		var dictkey = this.href.split('#').pop().split('_');
-		var currentdata = me.data_points[dictkey[0]]
-
-		var h = dictkey.join('_');
-
-		var th = document.location.hash.split(',').shift();
-
-
-		document.location.hash = th + ',' + h;
-
-		graphcore.drawChart(dictkey[1], [currentdata] , me);
-		d3.select(me.container + ' h1').text($(this).text());
-
-		if (currentdata['description']!= undefined) {
-			d3.select(me.container + ' h1')
-				.append('p')
-				.attr('id', 'gp_details')
-				.text(currentdata.description);
-		}
-
-		var date = currentdata['date'];
-		if (date != undefined) {
-			d3.select(me.container + ' h1')
-				.append('p')
-				.attr('id', 'gp_date').text(date);
-		}
-	});
-
-	$('#questionlist li a').first().trigger('click');
-
-	return this;
-};
 
