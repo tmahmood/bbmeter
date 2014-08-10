@@ -16,12 +16,14 @@ nav {
 		right: 1.5em;
 
 		a {
+			background: #333;
+			border-radius: .2em;
 			color: tint($navbg, 60%);
-			padding: .3em;
+			padding: .2em .6em;
+
 			&:after {
-				content: '|';
-				margin: 0 .4em;
 			}
+
 			&:last-child:after {
 				content: '';
 			}
@@ -41,7 +43,7 @@ nav {
 
 		position: fixed;
 		right: 1em;
-		top: .5em;
+		top: 3em;
 		z-index: 199;
 		font-weight: bold;
 		background: $navbg;
