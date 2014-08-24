@@ -71,44 +71,16 @@ class UserTableSeeder extends Seeder {
 					));
 		$u->roles()->attach(1);
 		$u->roles()->attach(2);
+    }
+}
 
+class GraphTypeTableSeeder extends Seeder {
 
-        $u = User::create(array(
-						'name' => 'tmahmood',
-						'password' => Hash::make('pw3b p@ss'),
-					));
-		$u->roles()->attach(1);
-
-        $u = User::create(array(
-						'name' => 'toufiq',
-						'password' => Hash::make('pw3b p@ss'),));
-		$u->roles()->attach(1);
-		$u->roles()->attach(3);
-
-        $u = User::create(array(
-						'name' => 'tuser001',
-						'password' => Hash::make('pw3b p@ss'),));
-
-		$u->roles()->attach(1);
-		$u->roles()->attach(3);
-
-        $u = User::create(array(
-						'name' => 'tuser002',
-						'password' => Hash::make('pw3b p@ss'),
-					));
-		$u->roles()->attach(1);
-		$u->roles()->attach(3);
-
-        $u = User::create(array(
-						'name' => 'tuser003',
-						'password' => Hash::make('pw3b p@ss'),
-					));
-		$u->roles()->attach(1);
-
-        User::create(array(
-						'name' => 'tuser004',
-						'password' => Hash::make('pw3b p@ss'),
-					));
-		$u->roles()->attach(1);
+    public function run()
+    {
+        Graphtype::create(array( 'name' => 'DiscretBar',));
+        Graphtype::create(array( 'name' => 'Pie',));
+        Graphtype::create(array( 'name' => 'SimpleLine',));
+        Graphtype::create(array( 'name' => 'GroupedMultiBar',));
     }
 }

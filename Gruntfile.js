@@ -10,8 +10,8 @@ module.exports = function(grunt) {
 		copy: {
 			build: {
 				files: [
-					{ expand: true, dest:'public/data/', src: ['assets/data/*'], flatten: true },
-					{ expand: true, dest:'../html/data/', src: ['assets/data/*'], flatten: true }
+					{ expand: false, dest:'public/', src: ['assets/data/**'], flatten: false },
+					{ expand: false, dest:'../html/', src: ['assets/data/**'], flatten: false }
 				]
 			}
 		},
@@ -30,6 +30,8 @@ module.exports = function(grunt) {
 					],
 					'public/assets/js/d3_nvd3.min.js': ['vendor/mbostock/d3/d3.min.js', 'assets/js/nv.d3.js'],
 					'public/assets/js/visual.min.js': 'assets/js/visual.js',
+					'public/assets/js/archive.min.js': 'assets/js/archive.js',
+					'../html/assets/js/archive.min.js': 'assets/js/archive.js',
 					'../html/assets/js/visual.min.js': 'assets/js/visual.js',
 					'../html/assets/js/libs.min.js': [ 'vendor/mbostock/d3/d3.min.js', 'assets/js/nv.d3.js',
 															 'components/select2/select2.js', 'components/jquery-ui/jquery-ui-built.js', ],
@@ -85,7 +87,7 @@ module.exports = function(grunt) {
 				}
 			},
 			copy: {
-				files: ['assets/data/*.json'],
+				files: ['assets/data/**/*.json'],
 				tasks: ['copy'],
 				options: {
 					spawn: false

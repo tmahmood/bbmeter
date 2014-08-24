@@ -7,7 +7,7 @@ nav {
 			display: none;
 		}
 		position: fixed;
-		top: 3.6em;
+		top: 3em;
 		$navbg: #333;
 		$navfg: tint($navbg, 70%);
 		text-transform: uppercase;
@@ -43,7 +43,7 @@ nav {
 
 		position: fixed;
 		right: 1em;
-		top: 3em;
+		top: 1.4em;
 		z-index: 199;
 		font-weight: bold;
 		background: $navbg;

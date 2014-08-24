@@ -54,9 +54,14 @@ GraphCore.prototype.Pie = function(_data, src) {
 	var data = _data[0].values;
 	nv.addGraph(function() {
 	  var chart = nv.models.pieChart()
-		  .x(function(d) { return d.label })
-		  .y(function(d) { return d.value })
-		  .showLabels(true);
+			.x(function(d) { return d.label })
+			.y(function(d) { return d.value })
+			.tooltipContent(function(key, x, y, e, graph){
+				return '<h3>' + key + '</h3>' +
+					   '<p>' + Math.round(x * 1) + '%</p>';
+			})
+			.showLabels(true)
+
 
 		if (_data[0].colors != undefined) {
 			chart.color(_data[0].colors);

@@ -24,6 +24,11 @@ Visualizer.prototype.loadData = function(datafile, graph) {
 		me.groups = [];
 
 		for (var ky in jdata) {
+			if (ky == 0) {
+				me.participants = jdata[ky].participants;
+				me.scope = jdata[ky].scope;
+				me.moe = jdata[ky].moe;
+			}
 			var grp = jdata[ky].group;
 			if (grp != undefined) {
 				if (me.groups.indexOf(grp) < 0) {
@@ -62,6 +67,18 @@ Visualizer.prototype.loadData = function(datafile, graph) {
 				$('#groupmenu a').first().trigger('click');
 			}
 		}
+
+		var html = []
+		if (me.moe != undefined) {
+			html.push('<span><b>Margin of Error:</b> ' + me.moe);
+		}
+
+		if (me.participants != undefined) {
+			html.push('<b>Participants:</b> ' + me.participants + '</span>');
+		}
+
+
+		$('#surveyinfo').html('<div><strong>' + me.scope + '</strong></div>' + html.join(', '));
 	});
 
 	return this;
@@ -75,7 +92,6 @@ Visualizer.prototype.onPageLoad = function() {
 };
 
 Visualizer.prototype.makeSideMenu = function() {
-
 	this.drawQuestionList();
 	d3.select('svg').text("");
 	return this;
@@ -132,6 +148,7 @@ Visualizer.prototype.onGraphToDisplayClick = function() {
 		$('#questionlist li').removeClass('active');
 		$(this).parent().addClass('active');
 
+
 		var dictkey = this.href.split('#').pop().split('_');
 		var currentdata = me.data_points[dictkey[0]]
 
@@ -154,7 +171,8 @@ Visualizer.prototype.onGraphToDisplayClick = function() {
 		if (date != undefined) {
 			d3.select(me.container + ' h1')
 				.append('p')
-				.attr('id', 'gp_date').text(date);
+				.attr('id', 'gp_date')
+				.text(date);
 		}
 	});
 };
@@ -178,7 +196,6 @@ Visualizer.prototype.onGroupMenuClick = function() {
 			$('#questionlist li:visible a').first().trigger('click');
 			$('#groupmenu ul').removeClass('hovermenu');
 		}
-
 	});
 };
 

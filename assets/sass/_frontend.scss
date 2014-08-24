@@ -1,184 +1,93 @@
-@mixin elecolors($color) {
-	background: $color;
-	color: tint($color, 90%);
-	font-size: .8em;
-	text-transform: uppercase;
+%fullscreendiv {
+	position: relative;
+	width: 100%;
+	min-height: 100%;
+	padding: 0 3em;
+	background-position: 50% 50%;
+
+	h1 {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		background: #444;
+		color: #fff;
+		padding: .4em;
+		margin-top: 0;
+	}
+
+	p {
+		background: #555;
+		color: #eee;
+		border-radius: .3em;
+		padding: 1em 2em;
+		margin: 0;
+	}
 }
 
-.nicebox.blue {
-	@include niceboxes_colors($defaultblue);
-}
 
+%fb {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	top: 3em;
 
-.nicebox.green {
-	@include niceboxes_colors($defaultgreen);
-}
+	.slidechange {
+		z-index: 1000;
+		position: fixed;
+		padding: .6em 1em;
 
-.nicebox.orange {
-	@include niceboxes_colors(#fc6e51);
-}
-
-.simplebox.cyan {
-	@include simplebox_colors(#37abc8);
-}
-
-.simplebox.orange {
-	@include simplebox_colors(#fc6e51);
-}
-
-p {
-	font-size: 1em;
-	line-height: 2em;
-	>span, >a {
+		background: #fff;
+		font-size: 1.2em;
 		font-weight: bold;
-		padding: .2em .4em;
-		border-radius: .2em;
-		white-space: nowrap;
+		text-transform: uppercase;
+		width: 8em;
+		text-align: center;
+
+		box-shadow: 0 0 .1em 0 #555;
+		border-radius: .1em;
 	}
-	>span {
-		font-family: 'Source Code Pro', Consolas, monospace;
+
+	.prev {
+		left: 1em;
+		bottom: 5em;
+	}
+
+	.next {
+		bottom: 5em;
+		right: 1em;
+	}
+
+
+	div {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		padding-top: 0;
+
+		div {
+			@extend %fullscreendiv;
+		}
+
+	}
+
+
+	&.distback {
+		display: none;
 	}
 }
 
-.panel {
-	.picture {
-		@include row;
-		overflow: hidden;
-		height: 20em;
-		margin-bottom: 2em;
-	}
+#frontend {
+	@extend %fb;
+}
 
-	#updates {
-		@include span-columns(9);
-
-		#election_filtering {
-			@include span-columns(2);
-			ul {
-				margin: 0;
-				padding: 0;
-			}
-			li {
-				list-style: none;
-				a {
-					padding: .5em;
-					@include row;
-					color: shade($defaultblue, 60%);
-					&:hover {
-						font-weight: bold;
-						background: $defaultblue;
-						color: tint($defaultblue, 90%);
-					}
-
-					&.active {
-						background: shade($defaultblue, 30%);
-						color: tint($defaultblue, 90%);
-					}
-				}
-			}
-		}
-		#responses {
-			@include span-columns(10);
-			margin: 0;
-			padding: 0;
-			>li {
-				@include row;
-				$green: #aade87;
-				list-style: none;
-				border-top: .2em solid $green;
-				margin-bottom: 1em;
-				padding-top: 1em;
-
-				&:first-child {
-					border-top: none;
-				}
-
-				header {
-					margin-bottom: .8em;
-					text-align: center;
-					color: $green;
-					font-size: 1.6em;
-					@include span-columns(2);
-				}
-
-				ul {
-					@include span-columns(10);
-					padding: 0;
-					margin: 0;
-
-
-					li {
-						@include row;
-						font-weight: bold;
-						color: #888;
-						font-family: 'Roboto Condensed', 'Roboto', Lato, Sans-Serif;
-						margin: 0 0 .2em 0;
-						a {
-							color: $defaultblue;
-						}
-
-
-						>div {
-							padding: .4em;
-							$l: $defaultblue $defaultgreen #0083AB #808080 #808000;
-							@for $i from 1 through 5 {
-								&.el_#{$i} {
-									$k: nth($l, $i);
-									@include elecolors($k);
-								}
-								& .ln_#{$i} {
-									$k: nth($l, $i);
-									color: $k;
-								}
-							}
-
-							&:first-child {
-								@include span-columns(10);
-							}
-							.graph-container {
-								@include row;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	.info {
-		@include span-columns(3);
-		>div {
-			margin-bottom: 1em;
-			border-radius: .2em;
-		}
+#textcontainer  {
+	@extend %fb;
+	div {
+		@extend %fullscreendiv;
 	}
 }
 
-nav.navdefault {
-	margin: 1em 0;
-	text-align: right;
-	@include row;
-	a {
-		color: tint($defaultgreen, 30%);
-		font-size: 1em;
-		font-weight: bold;
-		text-decoration: none;
-		&:after {
-			content: ' / ';
-			color: #555;
-			font-weight: bold;
-		}
-		&:last-child:after { content: ''; }
-	}
-}
-
-#js-news {
-	list-style: none;
-	overflow: hidden;
-	color: $defaultblue;
-	border-bottom: .1em solid $defaultblue;
-	text-align: center;
-	li {
-		padding: .5em;
-		font-size: 1em;
-		font-weight: bold;
-	}
-}

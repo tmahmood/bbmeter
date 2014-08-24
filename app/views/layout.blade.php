@@ -33,26 +33,26 @@
 			<!-- HEADER -->
 			<header id="logo">
 				<h1>
-					<a class="_txt_" href="#txt$frontpage"><img src="assets/imgs/logo.svg" alt="Bangladesh Barometer"></a>
+					<a class="_txt_" href="#txt$frontpage"><img src="assets/imgs/logo.png" alt="Bangladesh Barometer"></a>
 				</h1>
 			</header>
 			<!-- NAVIGATION -->
 			<nav>
 				<p><img src="assets/imgs/icon-menu.svg"></p>
-				<a class="_nv_graphs" href="visual#compendium">All Survey Results</a>
 				<h4>Latest Survey</h4>
-				<a class="_nv_graphs" href="visual#catss_survey_1">Most Recent Survey Results</a>
-				<a class="_nv_graphs" href="visual#mmedia">Media Monitoring</a>
-				<a class="_nv_graphs" href="visual#media_survey">Media Survey</a>
+				<a class="_nv_graphs" href="visual#catss/2014/july">Most Recent Survey Results</a>
+				<a class="_nv_graphs" href="visual#mmonitor/2014/june">Media Monitoring</a>
+				<a class="_nv_graphs" href="visual#elections/2014/upazila_march">Election Result Analysis</a>
+				<a class="_nv_graphs" href="visual#catss/2014/july">Media Survey</a>
+				<h4>Others</h4>
+				<a class="_nv_archive" href="visual#archive">All Data</a>
 			</nav>
 			<!-- NOTIFICATIONS -->
 			<div id="notifications"></div>
 			<!-- CONTENT -->
 			<main>
-				<div id="frontend">
-				</div>
-				<div id="textcontainer">
-				</div>
+				<div id="frontend"></div>
+				<div id="textcontainer"></div>
 				<div id="graphcontent">
 					@yield('content')
 				</div>
@@ -64,8 +64,10 @@
 
 		<footer id="footer">
 			<a class="_txt_" href="#txt$contact">Contact</a>
-			<a class="_txt_" href="#txt$aboutdi">About</a>
+			<a class="_txt_" href="#txt$aboutdi">About DI</a>
+			<img src="assets/imgs/usaid.png" alt="USAID">
 			<img src="assets/imgs/di_logo.png" alt="DI">
+			<img src="assets/imgs/ukaid.png" alt="UKAID">
 		</footer>
 
 		<!-- SCRIPTS -->
